@@ -1,0 +1,20 @@
+{
+  "name": "jogo-da-velha",
+  "version": "1.0.0",
+  "description": "Jogo da velha simples feita com js e electron.",
+  "main": "./electron/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurLobopro/jogo-da-velha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArthurLobopro/jogo-da-velha/issues"
+  },
+  "homepage": "https://github.com/ArthurLobopro/jogo-da-velha#readme"
+}
