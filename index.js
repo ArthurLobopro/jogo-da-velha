@@ -1,15 +1,4 @@
 // Classes dificuldade
-class Easy{
-    randint = (min,max) => Math.floor(Math.random() * (max-min+1)) + min
-    play(game){
-        let jbot = randint(0,8)
-        if(game.status[jbot]==''){
-            return jbot
-        }else{
-            this.play(game)
-        }
-    }
-}
 class Normal extends Easy{
     // "Inteligencia" do bot, faz verificações em todos os angulos
     vertical = (str,game) =>{
