@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ArthurLobopro/jogo-da-velha/issues"
   },
-  "homepage": "https://github.com/ArthurLobopro/jogo-da-velha#readme"
+  "homepage": "https://github.com/ArthurLobopro/jogo-da-velha#readme",
+  "dependencies": {
+    "electron": "^12.0.6"
+  }
 }
