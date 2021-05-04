@@ -1,0 +1,97 @@
+@import url('../public/css/button.css');
+@import url('../public/css/nunito.css');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*Tags*/
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+section{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    width: 255px;
+    min-height: 255px;
+    height: max-content;
+    text-align: center;
+}
+section > .config{
+    float: right;
+}
+section > .config:hover{
+    background-color: #f1f3f4;
+}
+/*Ids*/
+#content{
+    width: 154px;
+    height: 154px;
+    margin: 20px auto;
+}
+#game{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: black;
+    grid-gap: 2px;
+    user-select: none;
+    margin: 40px auto;
+}
+#config{
+    font-family: 'Nunito';
+    font-size: 14px;
+    margin: auto;
+    width: max-content;
+    text-align: initial;
+}
+#placar{ 
+    font-size: 35px; 
+    width: max-content;
+}
+#msg{
+    font-size: 25px;
+    text-align: center;
+}
+#placar,#msg{
+    font-family: 'Nunito';
+}
+
+/*Classes*/
+.invisible{
+    display: none !important;
+}
+.square{
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.square img{
+    margin: auto;
+    width: max-content;
+}
+.showx{ animation: showx 1.5s; }
+.showo{ animation: showo 4s; }
+
+.rotated{
+    transform: rotate(25deg);
+}
+/*Animações*/
+@keyframes showx{
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+}
+@keyframes showo{
+    0%{ opacity: 0; }
+    50%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
