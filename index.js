@@ -1,5 +1,7 @@
 import Easy from "./scripts/dificulties/Easy.js"
 import Normal from "./scripts/dificulties/Normal.js"
+import { criaPlacar, criarDificuldade, lerDificuldade, lerPlacar } from "./scripts/Save.js";
+import { placar, draw, drawWinSequence } from "./scripts/View.js"
 // Variáveis Globais
 const get = id => document.getElementById(id)
 const game = {
@@ -8,21 +10,17 @@ const game = {
         player: 0,
         bot: 0
     },
+    have_winner: false,
     difficulty: undefined,
     getDifficulty: (difficulty) => {
         return difficulty == 'facil' ? new Easy() : new Normal()
     }
 }
+
 const msg = get('msg')
-const randint = (min,max) => Math.floor(Math.random() * (max-min+1)) + min
-const range = (min,max,pass=1) => {
-    let array = []
-    for(let i = min;i<max;i+=pass){
-        array.push(i)
-    }
-    return array
-}
+
 const jogar = event => jogadaPlayer(String(event.target.id)[3])
+
 let bot
 // Função do jogo
 function jogadaPlayer(player,alerta=true) {
@@ -31,6 +29,7 @@ function jogadaPlayer(player,alerta=true) {
         game.status[player-1]='x'
         draw(player,'x')
         let have_winner = verifica()
+        game.have_winner = have_winner
         let disp = false
         for(let i of game.status){
             if(i==''){
@@ -38,31 +37,28 @@ function jogadaPlayer(player,alerta=true) {
                 break
             }
         }
-        console.log(game.status);
         get(`div${player}`).onclick = ""
         if(disp==true && have_winner==false){
             jogadaBot()
             verifica()
         }
-        setTimeout(() => {
-            addEventAll()
+       setTimeout(() => {
+            if(game.have_winner == false){
+                addEventAll()
+            }
         }, 4000)
     }else{
         (alerta==true) ? alert('Jogada inválida') : null
     }
 }
-function draw(id,src) {
-    get(`div${id}`).innerHTML=`<img src='assets/${src}.png' class='show${src}'>`
-}
+
 function jogadaBot() {
+
     let jbot = bot.play(game)
+
     if(game.status[jbot]==''){
         game.status[jbot]='o'
-        console.log(game.status);
         draw(jbot+1,'o')
-        get(`div${jbot+1}`).removeEventListener('click',jogar,false) 
-    }else{
-        jogadaBot()
     }
 }
 // Validação de vitórias.
@@ -98,26 +94,23 @@ function verifica() {
 
 function win(winner='en',sequence){
     if(winner=='x'){
-        for(let i of sequence){
-            document.getElementById(`div${i}`).innerHTML=`<img src='midia/red-x.png'>`
-        }
+        drawWinSequence({sequence, winner})
         game.placar.player++
-        placar()
+        placar(game)
         msg.innerHTML=`Você venceu!<br>`
     }else if(winner=='o'){
-        for(let i of sequence){
-            document.getElementById(`div${i}`).innerHTML=`<img src='midia/red-o.png'>`
-        }
+        drawWinSequence({sequence, winner})
         game.placar.bot++
-        placar()
+        placar(game)
         msg.innerHTML=`Você perdeu!<br>`
     }else if(winner=='en'){
         msg.innerHTML=`Empate!!<br>`
     }
     get('new-game-button').classList.toggle('invisible')
-    criaPlacar()
+    criaPlacar(game.placar)
     removeEventAll()
 }
+
 const newgame= () => {
     for(let i in game.status){
         game.status[i]=''
@@ -143,72 +136,40 @@ const removeEventAll = () => {
         get(`div${i+1}`).onclick = null
     }
 }
+
 const body = document.body
-    body.onload = () =>{
-        lerPlacar()
-        lerDificuldade()
-        addEventAll()
-    }
-// Salvar placar com local storage
-function lerPlacar(){
-    if(localStorage["velha"] == undefined){
-        criaPlacar()
-    }else{
-        const data = JSON.parse(localStorage["velha"])
-        let player,bot 
-        ({player, bot} = data)
-        game.placar.player = player
-        game.placar.bot = bot
-        placar()
-    }
+body.onload = () =>{
+    game.placar = lerPlacar()
+    game.difficulty = lerDificuldade()
+    addEventAll()
+    bot = game.getDifficulty()
+    placar(game)
+    get(game.difficulty).checked = true
 }
-function criaPlacar(){
-    let placar = game.placar
-    let json = JSON.stringify(placar)
-    localStorage["velha"] = json
-}
-function placar(){
-    document.getElementById('player').innerText= game.placar.player
-    document.getElementById('bot').innerText= game.placar.bot
-}
-// Salvar dificuldade
-function lerDificuldade(){
-    if(localStorage.difficulty == undefined){
-        criarDificuldade('normal')
-    }else{
-        let difficulty
-        ( { difficulty } = localStorage)
-        game.difficulty = difficulty
-        bot = game.getDifficulty(difficulty)
-        get(difficulty).checked = true
-    }
-}
-function criarDificuldade(dificuldade){
-    localStorage.difficulty = dificuldade
-    game.difficulty = dificuldade
-    lerDificuldade()
-}
-// Detecção de eventos 
+
 const img_config = document.querySelector('.config > img')
 img_config.onclick = () => {
+    if(!new_game_button.classList.contains('invisible')){ newgame() }
+        
     get('game').classList.toggle('invisible')
     get('config').classList.toggle('invisible')
     img_config.classList.toggle('rotated')
 }
+
 const difficulty_config = document.querySelectorAll('#config input')
 for(let i of difficulty_config){
     i.onclick = event => {
         criarDificuldade(event.target.value)
     }
 }
+
 const new_game_button = get("new-game-button")
 new_game_button.onclick = newgame
 const reset = get("reset")
 reset.onclick = () => {
     if(confirm('Você realmente deseja resetar o placar?')){
-        game.placar.player = 0
-        game.placar.bot = 0
-        criaPlacar()
-        placar()
+        game.placar = { player:0, bot: 0}
+        criaPlacar(game.placar)
+        placar(game)
     }
 }
