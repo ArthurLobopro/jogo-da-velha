@@ -24,8 +24,7 @@ function lerPlacar(){
     return data
 }
 
-function criaPlacar(game){
-    let placar = game.placar
+function criaPlacar(placar){
     let json = JSON.stringify(placar)
     localStorage.setItem("placar",json)
 }
