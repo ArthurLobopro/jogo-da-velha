@@ -38,6 +38,12 @@ class Hard extends Normal {
         return ''
     }
 
+            if(sts[0] === sts[4] && sts[8] === 'o') return randItem([0,4])
+            if(sts[0] === sts[8] && sts[4] === 'o') return randItem([0,8])
+            if(sts[4] === sts[8] && sts[0] === 'o') return randItem([4,8])
+
+        }
+    }
     play(game){
         let jbot = ''
         //Verifica se dá pra ganhar
