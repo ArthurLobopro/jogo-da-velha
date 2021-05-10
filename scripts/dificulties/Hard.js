@@ -38,7 +38,6 @@ class Hard extends Normal {
         return ''
     }
     diagonalPlay(game){
-        
         const { status: sts } = game
         if(sts[0] !== 'x' && sts[4] !== 'x' && sts[8] !== 'x'){
             
@@ -47,6 +46,12 @@ class Hard extends Normal {
             if(sts[4] === sts[8] && sts[0] === 'o') return randItem([4,8])
 
         }
+        if(sts[2] !== 'x' && sts[4] !== 'x' && sts[6] !== 'x'){
+            if(sts[2] === sts[4] && sts[6] === 'o') return randItem([2,4])
+            if(sts[2] === sts[6] && sts[4] === 'o') return randItem([2,6])
+            if(sts[4] === sts[6] && sts[0] === 'o') return randItem([4,6])
+        }
+        return ''
     }
     play(game){
         let jbot = ''
@@ -59,6 +64,7 @@ class Hard extends Normal {
         jbot = (jbot === '') ? this.diagonalWin('x',game) : jbot
         jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
         console.log(`Main: ${jbot}`);
+        jbot = (jbot === '') ? this.diagonalPlay(game) : jbot
         jbot = (jbot === '') ? this.verticalPlay(game) : jbot
         jbot = (jbot === '') ? this.horizontalPlay(game) : jbot
         console.log(`new: ${jbot}`);
