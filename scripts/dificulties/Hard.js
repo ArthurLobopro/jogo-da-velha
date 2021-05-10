@@ -1,5 +1,10 @@
 import Normal from "./Normal.js"
 
+const randItem = arr => {
+    const randint = (min,max) => Math.floor(Math.random() * (max-min+1)) + min
+    return arr[randint(0,arr.length - 1)]
+}
+
 class Hard extends Normal {
     verticalPlay(game){
         const { status: sts } = game
