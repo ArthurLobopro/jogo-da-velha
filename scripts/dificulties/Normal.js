@@ -1,11 +1,12 @@
 import Easy from "./Easy.js"
-const range = (min,max,pass=1) => {
-    let array = []
-    for(let i = min;i<max;i+=pass){
-        array.push(i)
+class Normal extends Easy{
+    range = (min,max,pass=1) => {
+        let array = []
+        for(let i = min;i<max;i+=pass){
+            array.push(i)
+        }
+        return array
     }
-    return array
-}
 class Normal extends Easy{
     // "Inteligencia" do bot, faz verificações em todos os angulos
     vertical = (str,game) =>{
