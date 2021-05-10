@@ -11,11 +11,12 @@ class Hard extends Normal {
         for(let i of this.range(0,3)){
             if(sts[i] !== "x" && sts[i+3] !== "x" && sts[i+6] !== "x"){
 
-                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return i
+                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return randItem([i+i+3])
  
-                if(sts[i] === sts[i+6] && sts[i+3] === "o" ) return i+6
+                if(sts[i] === sts[i+6] && sts[i+3] === "o" ) return randItem([i,i+6])
 
-                if(sts[i+6] === sts[i+3] && sts[i] === "o" ) return i+6
+                if(sts[i+6] === sts[i+3] && sts[i] === "o" ) return randItem([i+3,i+6])
+               
             }
             
         }
@@ -24,13 +25,13 @@ class Hard extends Normal {
     horizontalPlay(game){
         const { status: sts } = game
         for(let i of this.range(0,7,3)){
-            if(sts[i] !== "x" && sts[i+1] !== "x" && sts[i+6] !== "x"){
+            if(sts[i] !== "x" && sts[i+1] !== "x" && sts[i+2] !== "x"){
 
-                if(sts[i] === sts[i+1] && sts[i+2] === "o") return i
+                if(sts[i] === sts[i+1] && sts[i+2] === "o") return randItem([i,i+1])
 
-                if(sts[i] === sts[i+2] && sts[i+1] === "o") return i
+                if(sts[i] === sts[i+2] && sts[i+1] === "o") return randItem([i,i+2])
 
-                if(sts[i+1] === sts[i+2] && sts[i] === "o") return i+2
+                if(sts[i+1] === sts[i+2] && sts[i] === "o") return randItem([i+1,i+2])
 
             }
         }
