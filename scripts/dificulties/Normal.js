@@ -7,27 +7,26 @@ class Normal extends Easy{
         }
         return array
     }
-class Normal extends Easy{
     // "Inteligencia" do bot, faz verificações em todos os angulos
-    vertical = (str,game) =>{
+    verticalWin = (str,game) =>{
         const sts = game.status
-        for( let i of range(0,3)){
+        for( let i of this.range(0,3)){
             if(sts[i]== str && sts[i+3] == str && sts[i+6] == '' )  return i+6 
             if(sts[i]== str && sts[i+3] == ''  && sts[i+6] == str)  return i+3 
             if(sts[i]== ''  && sts[i+3] == str && sts[i+6] == str)  return i 
         }
         return ''
     }
-    horizontal = (str,game) =>{
+    horizontalWin = (str,game) =>{
         const sts = game.status
-        for( let i of range(0,7,3)){
+        for( let i of this.range(0,7,3)){
             if(sts[i] == str && sts[i+1] == str && sts[i+2] == '') return i+2 
             if(sts[i] == str && sts[i+1] == '' && sts[i+2] == str) return i+1 
             if(sts[i] == '' && sts[i+1] == str && sts[i+2] == str) return i 
         }
         return  ''
     }
-    diagonal = (str,game) =>{
+    diagonalWin = (str,game) =>{
         const sts = game.status
         if (sts[0] == str && sts[4] == str && sts[8] == '')  return 8 
         if (sts[0] == str && sts[4] == ''  && sts[8] == str) return 4 
