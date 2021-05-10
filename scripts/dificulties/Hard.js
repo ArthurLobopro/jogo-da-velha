@@ -37,7 +37,11 @@ class Hard extends Normal {
         }
         return ''
     }
-
+    diagonalPlay(game){
+        
+        const { status: sts } = game
+        if(sts[0] !== 'x' && sts[4] !== 'x' && sts[8] !== 'x'){
+            
             if(sts[0] === sts[4] && sts[8] === 'o') return randItem([0,4])
             if(sts[0] === sts[8] && sts[4] === 'o') return randItem([0,8])
             if(sts[4] === sts[8] && sts[0] === 'o') return randItem([4,8])
