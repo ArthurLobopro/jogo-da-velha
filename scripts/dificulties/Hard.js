@@ -20,9 +20,16 @@ class Hard extends Normal {
         const { status: sts } = game
         for(let i of this.range(0,7,3)){
             if(sts[i] !== "x" && sts[i+1] !== "x" && sts[i+6] !== "x"){
-                
+
+                if(sts[i] === sts[i+1] && sts[i+2] === "o") return i
+
+                if(sts[i] === sts[i+2] && sts[i+1] === "o") return i
+
+                if(sts[i+1] === sts[i+2] && sts[i] === "o") return i+2
+
             }
         }
+        return ''
     }
 
     play(game){
@@ -37,15 +44,12 @@ class Hard extends Normal {
         jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
         console.log(`Main: ${jbot}`);
         jbot = (jbot === '') ? this.verticalPlay(game) : jbot
+        jbot = (jbot === '') ? this.horizontalPlay(game) : jbot
         console.log(`new: ${jbot}`);
         jbot = (jbot === '') ? this.randint(0,8) : jbot
         console.log(`Final: ${jbot}`);
         //return jbot
-        if(game.status[jbot] === ''){
-            return jbot
-        }else{
-            this.play(game)
-        }
+        return jbot
     }
 }
 
