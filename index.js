@@ -1,5 +1,6 @@
 import Easy from "./scripts/dificulties/Easy.js"
 import Normal from "./scripts/dificulties/Normal.js"
+import Hard from "./scripts/dificulties/Hard.js"
 import { criaPlacar, criarDificuldade, lerDificuldade, lerPlacar } from "./scripts/Save.js";
 import { placar, draw, drawWinSequence } from "./scripts/View.js"
 // Variáveis Globais
@@ -13,7 +14,10 @@ const game = {
     have_winner: false,
     difficulty: undefined,
     getDifficulty: (difficulty) => {
-        return difficulty == 'facil' ? new Easy() : new Normal()
+        return (
+            difficulty == 'facil' ? new Easy() : 
+            difficulty == 'dificil' ? new Hard() : new Normal()
+        )
     }
 }
 
@@ -55,10 +59,11 @@ function jogadaPlayer(player,alerta=true) {
 function jogadaBot() {
 
     let jbot = bot.play(game)
-
-    if(game.status[jbot]==''){
-        game.status[jbot]='o'
+    if(game.status[jbot] === ''){
+        game.status[jbot] = 'o'
         draw(jbot+1,'o')
+    }else{
+        jogadaBot()
     }
 }
 // Validação de vitórias.
