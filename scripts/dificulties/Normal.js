@@ -39,14 +39,20 @@ class Normal extends Easy{
         return ''
     }
     play(game){
-        let jbot = this.vertical('o',game)
-        jbot = (jbot==='') ? this.horizontal('o',game) : jbot
-        jbot = (jbot==='') ? this.diagonal('o',game) : jbot
-        jbot = (jbot==='') ? this.vertical('x',game) : jbot
-        jbot = (jbot==='') ? this.diagonal('x',game) : jbot
-        jbot = (jbot==='') ? this.horizontal('x',game) : jbot
+        let jbot
+        //Verifica se dá pra ganhar
+        jbot =  this.verticalWin('o',game)
+        jbot = (jbot === '') ? this.horizontalWin('o',game) : jbot
+        jbot = (jbot === '') ? this.diagonalWin('o',game) : jbot
+
+        //Verifica se dá para evitar a derrota
+        jbot = (jbot === '') ?  this.verticalWin('x',game) : jbot
+        jbot = (jbot === '') ? this.diagonalWin('x',game) : jbot
+        jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
+        
         //Caso não há possibilidades nem de ganhar ou evitar a derrota, o bot faz uma jogada aleatória.
-        jbot = (jbot==='') ? this.randint(0,8) : jbot
+        jbot = (jbot === '') ? this.randint(0,8) : jbot
+
         return jbot
     }
 }
