@@ -5,18 +5,12 @@ class Hard extends Normal {
         const { status: sts } = game
         for(let i of this.range(0,3)){
             if(sts[i] !== "x" && sts[i+3] !== "x" && sts[i+6] !== "x"){
-                if(sts[i] === sts[i+3] && sts[i+6] === "o" ){
-                    console.log("j1");
-                    return i
-                }
-                if(sts[i] === sts[i+6] && sts[i+3] === "o" ){
-                    console.log("j2");
-                    return i+6
-                }
-                if(sts[i+6] === sts[i+3] && sts[i] === "o" ){
-                    console.log("j3");
-                    return i+6
-                }
+
+                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return i
+ 
+                if(sts[i] === sts[i+6] && sts[i+3] === "o" ) return i+6
+
+                if(sts[i+6] === sts[i+3] && sts[i] === "o" ) return i+6
             }
             
         }
