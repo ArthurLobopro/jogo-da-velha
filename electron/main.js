@@ -2,16 +2,18 @@ const { app, BrowserWindow } = require("electron")
 const Path = require('path')
 
 //Ações de Minimizar, fechar, maximizar
-//require("./header-actions-main.js")
+require("./header/header-actions-main.js")
 
 function mainWindow() {
 
     const win = new BrowserWindow({
-        //frame: false,
+        minHeight: 370,
+        minWidth: 275,
+        frame: false,
         //icon: Path.join(__dirname,"../assets/icon32.png"),
         webPreferences:{
             nodeIntegration: true,
-            //preload: Path.join(__dirname, 'preload.js')
+            preload: Path.join(__dirname, 'preload.js')
         }
     })
     //win.setMenu(null)
