@@ -9,7 +9,12 @@ const placar = game => {
 }
 
 const draw = (id,src) => {
+    
     get(`div${id}`).innerHTML=`<img src='assets/${src}.png' class='show${src}'>`
+    setTimeout(() => {
+        const img = document.querySelector(`#div${id} > img`)
+        img.classList.remove(`show${src}`)
+    }, src == 'x' ? 1600 : 4100);
 }
 
 const drawWinSequence = ({sequence,winner}) => {
