@@ -15,7 +15,7 @@ class Normal extends Easy{
             if(sts[i]== str && sts[i+3] == ''  && sts[i+6] == str)  return i+3 
             if(sts[i]== ''  && sts[i+3] == str && sts[i+6] == str)  return i 
         }
-        return ''
+        return null
     }
     horizontalWin = (str,game) =>{
         const sts = game.status
@@ -24,7 +24,7 @@ class Normal extends Easy{
             if(sts[i] == str && sts[i+1] == '' && sts[i+2] == str) return i+1 
             if(sts[i] == '' && sts[i+1] == str && sts[i+2] == str) return i 
         }
-        return  ''
+        return null
     }
     diagonalWin = (str,game) =>{
         const sts = game.status
@@ -35,22 +35,21 @@ class Normal extends Easy{
         if (sts[2] == str && sts[4] == ''  && sts[6] == str) return 4 
         if (sts[2] == ''  && sts[4] == str && sts[6] == str) return 2 
         
-        return ''
+        return null
     }
     play(game){
-        let jbot
         //Verifica se dá pra ganhar
-        jbot =  this.verticalWin('o',game)
-        jbot = (jbot === '') ? this.horizontalWin('o',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('o',game) : jbot
+        let jbot =  this.verticalWin('o',game)
+        jbot = jbot ?? this.horizontalWin('o',game)
+        jbot = jbot ?? this.diagonalWin('o',game)
 
         //Verifica se dá para evitar a derrota
-        jbot = (jbot === '') ?  this.verticalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
+        jbot = jbot ??  this.verticalWin('x',game)
+        jbot = jbot ?? this.diagonalWin('x',game)
+        jbot = jbot ?? this.horizontalWin('x',game)
         
         //Caso não há possibilidades nem de ganhar ou evitar a derrota, o bot faz uma jogada aleatória.
-        jbot = (jbot === '') ? this.randint(0,8) : jbot
+        jbot = jbot ?? this.randint(0,8)
 
         return jbot
     }
