@@ -20,7 +20,7 @@ class Hard extends Normal {
             }
             
         }
-        return ''
+        return null
     }
     horizontalPlay(game){
         const { status: sts } = game
@@ -35,7 +35,7 @@ class Hard extends Normal {
 
             }
         }
-        return ''
+        return null
     }
     diagonalPlay(game){
         const { status: sts } = game
@@ -51,26 +51,25 @@ class Hard extends Normal {
             if(sts[2] === sts[6] && sts[4] === 'o') return randItem([2,6])
             if(sts[4] === sts[6] && sts[0] === 'o') return randItem([4,6])
         }
-        return ''
+        return null
     }
     play(game){
-        let jbot = ''
+        let jbot
         //Verifica se dá pra ganhar
         jbot = this.verticalWin('o',game)
-        jbot = (jbot === '') ? this.horizontalWin('o',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('o',game) : jbot
+        jbot = jbot ?? this.horizontalWin('o',game)
+        jbot = jbot ?? this.diagonalWin('o',game)
         //Verifica se dá para evitar a derrota
-        jbot = (jbot === '') ? this.verticalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
+        jbot = jbot ?? this.verticalWin('x',game)
+        jbot = jbot ?? this.diagonalWin('x',game)
+        jbot = jbot ?? this.horizontalWin('x',game)
         console.log(`Main: ${jbot}`);
-        jbot = (jbot === '') ? this.diagonalPlay(game) : jbot
-        jbot = (jbot === '') ? this.verticalPlay(game) : jbot
-        jbot = (jbot === '') ? this.horizontalPlay(game) : jbot
+        jbot = jbot ?? this.diagonalPlay(game)
+        jbot = jbot ?? this.verticalPlay(game)
+        jbot = jbot ?? this.horizontalPlay(game)
         console.log(`new: ${jbot}`);
-        jbot = (jbot === '') ? this.randint(0,8) : jbot
+        jbot = jbot ?? this.randint(0,8)
         console.log(`Final: ${jbot}`);
-        //return jbot
         return jbot
     }
 }
