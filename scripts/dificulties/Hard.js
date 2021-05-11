@@ -11,7 +11,7 @@ class Hard extends Normal {
         for(let i of this.range(0,3)){
             if(sts[i] !== "x" && sts[i+3] !== "x" && sts[i+6] !== "x"){
 
-                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return randItem([i+i+3])
+                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return randItem([i,i+3])
  
                 if(sts[i] === sts[i+6] && sts[i+3] === "o" ) return randItem([i,i+6])
 
