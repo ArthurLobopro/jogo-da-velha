@@ -7,7 +7,7 @@ require("./header/header-actions-main.js")
 function mainWindow() {
 
     const win = new BrowserWindow({
-        minHeight: 370,
+        minHeight: 380,
         minWidth: 275,
         frame: false,
         //icon: Path.join(__dirname,"../assets/icon32.png"),

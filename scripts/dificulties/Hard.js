@@ -6,12 +6,11 @@ const randItem = arr => {
 }
 
 class Hard extends Normal {
-    verticalPlay(game){
-        const { status: sts } = game
+    verticalPlay(sts){
         for(let i of this.range(0,3)){
             if(sts[i] !== "x" && sts[i+3] !== "x" && sts[i+6] !== "x"){
 
-                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return randItem([i+i+3])
+                if(sts[i] === sts[i+3] && sts[i+6] === "o" ) return randItem([i,i+3])
  
                 if(sts[i] === sts[i+6] && sts[i+3] === "o" ) return randItem([i,i+6])
 
@@ -20,10 +19,9 @@ class Hard extends Normal {
             }
             
         }
-        return ''
+        return null
     }
-    horizontalPlay(game){
-        const { status: sts } = game
+    horizontalPlay(sts){
         for(let i of this.range(0,7,3)){
             if(sts[i] !== "x" && sts[i+1] !== "x" && sts[i+2] !== "x"){
 
@@ -35,10 +33,9 @@ class Hard extends Normal {
 
             }
         }
-        return ''
+        return null
     }
-    diagonalPlay(game){
-        const { status: sts } = game
+    diagonalPlay(sts){
         if(sts[0] !== 'x' && sts[4] !== 'x' && sts[8] !== 'x'){
             
             if(sts[0] === sts[4] && sts[8] === 'o') return randItem([0,4])
@@ -51,26 +48,25 @@ class Hard extends Normal {
             if(sts[2] === sts[6] && sts[4] === 'o') return randItem([2,6])
             if(sts[4] === sts[6] && sts[0] === 'o') return randItem([4,6])
         }
-        return ''
+        return null
     }
     play(game){
-        let jbot = ''
+        const { status: sts } = game
         //Verifica se dá pra ganhar
-        jbot = this.verticalWin('o',game)
-        jbot = (jbot === '') ? this.horizontalWin('o',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('o',game) : jbot
+        let jbot = this.verticalWin('o',sts)
+        jbot = jbot ?? this.horizontalWin('o',sts)
+        jbot = jbot ?? this.diagonalWin('o',sts)
         //Verifica se dá para evitar a derrota
-        jbot = (jbot === '') ? this.verticalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.diagonalWin('x',game) : jbot
-        jbot = (jbot === '') ? this.horizontalWin('x',game) : jbot
-        console.log(`Main: ${jbot}`);
-        jbot = (jbot === '') ? this.diagonalPlay(game) : jbot
-        jbot = (jbot === '') ? this.verticalPlay(game) : jbot
-        jbot = (jbot === '') ? this.horizontalPlay(game) : jbot
-        console.log(`new: ${jbot}`);
-        jbot = (jbot === '') ? this.randint(0,8) : jbot
-        console.log(`Final: ${jbot}`);
-        //return jbot
+        jbot = jbot ?? this.verticalWin('x',sts)
+        jbot = jbot ?? this.diagonalWin('x',sts)
+        jbot = jbot ?? this.horizontalWin('x',sts)
+        //Verifica se dá para jogar ao lado de uma jogada existente
+        jbot = jbot ?? this.diagonalPlay(sts)
+        jbot = jbot ?? this.verticalPlay(sts)
+        jbot = jbot ?? this.horizontalPlay(sts)
+        //Caso nenhuma tenha retornado, faz uma jogada aleatória
+        jbot = jbot ?? this.randint(0,8)
+
         return jbot
     }
 }

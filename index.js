@@ -13,11 +13,10 @@ const game = {
     },
     have_winner: false,
     difficulty: undefined,
-    getDifficulty: (difficulty) => {
-        return (
-            difficulty == 'facil' ? new Easy() : 
-            difficulty == 'dificil' ? new Hard() : new Normal()
-        )
+    getDifficulty: function ()  {
+        if(this.difficulty === 'facil') return new Easy()
+        if(this.difficulty === 'dificil') return new Hard()
+        return new Normal()
     }
 }
 
