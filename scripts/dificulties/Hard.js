@@ -60,13 +60,13 @@ class Hard extends Normal {
         jbot = jbot ?? this.verticalWin('x',sts)
         jbot = jbot ?? this.diagonalWin('x',sts)
         jbot = jbot ?? this.horizontalWin('x',sts)
-        console.log(`Main: ${jbot}`);
+        //Verifica se dá para jogar ao lado de uma jogada existente
         jbot = jbot ?? this.diagonalPlay(sts)
         jbot = jbot ?? this.verticalPlay(sts)
         jbot = jbot ?? this.horizontalPlay(sts)
-        console.log(`new: ${jbot}`);
+        //Caso nenhuma tenha retornado, faz uma jogada aleatória
         jbot = jbot ?? this.randint(0,8)
-        console.log(`Final: ${jbot}`);
+
         return jbot
     }
 }
