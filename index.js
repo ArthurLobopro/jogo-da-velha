@@ -163,7 +163,10 @@ img_config.onclick = () => {
 const difficulty_config = document.querySelectorAll('#config input')
 for(let i of difficulty_config){
     i.onclick = event => {
-        criarDificuldade(event.target.value)
+        const value = event.target.value
+        criarDificuldade(value)
+        game.difficulty = value
+        bot = game.getDifficulty()
     }
 }
 
