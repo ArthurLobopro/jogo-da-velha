@@ -11,6 +11,7 @@ body{
     height: 100vh;
     align-items: center;
     background-color: white;
+    user-select: none;
 }
 section{
     border: 1px solid gray;
