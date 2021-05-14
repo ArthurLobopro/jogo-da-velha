@@ -9,8 +9,10 @@ function mainWindow() {
     const win = new BrowserWindow({
         minHeight: 380,
         minWidth: 275,
+        width:370,
+        height: 440,
         frame: false,
-        //icon: Path.join(__dirname,"../assets/icon32.png"),
+        icon: Path.join(__dirname,"../assets/icon.png"),
         webPreferences:{
             nodeIntegration: true,
             preload: Path.join(__dirname, 'preload.js')
