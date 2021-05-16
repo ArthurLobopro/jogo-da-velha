@@ -1,7 +1,7 @@
 {
   "name": "jogo-da-velha",
   "version": "1.0.0",
-  "description": "Jogo da velha simples feita com js e electron.",
+  "description": "Jogo da velha simples.",
   "main": "./electron/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ArthurLobopro/jogo-da-velha.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arthur Lobo",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ArthurLobopro/jogo-da-velha/issues"
@@ -32,12 +32,17 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./build/icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "jogo_da_velha"
+            "name": "jogo-da-velha",
+            "setupIcon": "./build/icon.ico",
+            "iconURL": "./build/icon.ico",
+            "setupExe": "${name}-${version}-setup.exe"
           }
         },
         {
