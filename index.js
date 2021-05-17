@@ -1,6 +1,6 @@
-import Easy from "./src/dificulties/Easy.js.js"
-import Normal from "./src/dificulties/Normal.js.js"
-import Hard from "./src/dificulties/Hard.js.js"
+import Easy from "./src/dificulties/Easy.js"
+import Normal from "./src/dificulties/Normal.js"
+import Hard from "./src/dificulties/Hard.js"
 import { criaPlacar, criarDificuldade, lerDificuldade, lerPlacar } from "./src/Save.js";
 import { placar, draw, drawWinSequence } from "./src/View.js"
 // Variáveis Globais
