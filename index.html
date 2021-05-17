@@ -8,35 +8,37 @@
     <title>Jogo da velha</title>
 </head>
 <body>
-    <div id="placar">Você <span id="player">0</span> x <span id="bot">0</span> Bot</div>
-    <section>
-        <div class="config">
-            <img src="./assets/config.png" width="20px" alt="">
-        </div>
-        
-        <div id="content">
-            <div id="game">
-                <div class="square" id="div1" width="50" height="50"></div>
-                <div class="square" id="div2" width="50" height="50"></div>
-                <div class="square" id="div3" width="50" height="50"></div>
-                <div class="square" id="div4" width="50" height="50"></div>
-                <div class="square" id="div5" width="50" height="50"></div>
-                <div class="square" id="div6" width="50" height="50"></div>
-                <div class="square" id="div7" width="50" height="50"></div>
-                <div class="square" id="div8" width="50" height="50"></div>
-                <div class="square" id="div9" width="50" height="50"></div>
+    <div id="container">
+        <div id="placar">Você <span id="player">0</span> x <span id="bot">0</span> Bot</div>
+        <section>
+            <div class="config">
+                <img src="./assets/config.png" width="20px" alt="">
             </div>
-            <div id="config" class="invisible">
-                Dificuldade: <br>
-                <input type="radio" name="dificuldade" value="facil" id="facil"> Fácil  <br>
-                <input type="radio" name="dificuldade" value="normal" id="normal"> Médio <br>
-                <input type="radio" name="dificuldade" value="dificil" id="dificil"> Difícil <br>
-                <input type="button" id="reset" value="Resetar Placar">
+            
+            <div id="content">
+                <div id="game">
+                    <div class="square" id="div1" width="50" height="50"></div>
+                    <div class="square" id="div2" width="50" height="50"></div>
+                    <div class="square" id="div3" width="50" height="50"></div>
+                    <div class="square" id="div4" width="50" height="50"></div>
+                    <div class="square" id="div5" width="50" height="50"></div>
+                    <div class="square" id="div6" width="50" height="50"></div>
+                    <div class="square" id="div7" width="50" height="50"></div>
+                    <div class="square" id="div8" width="50" height="50"></div>
+                    <div class="square" id="div9" width="50" height="50"></div>
+                </div>
+                <div id="config" class="invisible">
+                    Dificuldade: <br>
+                    <input type="radio" name="dificuldade" value="facil" id="facil"> Fácil  <br>
+                    <input type="radio" name="dificuldade" value="normal" id="normal"> Médio <br>
+                    <input type="radio" name="dificuldade" value="dificil" id="dificil"> Difícil <br>
+                    <input type="button" id="reset" value="Resetar Placar">
+                </div>
             </div>
-        </div>
-        <div id="msg"></div>
-        <button id="new-game-button" class="invisible">Jogar outra vez</button>
-    </section>
+            <div id="msg"></div>
+            <button id="new-game-button" class="invisible">Jogar outra vez</button>
+        </section>
+    </div>
     <script src="index.js" type="module"></script>
 </body>
 </html>
