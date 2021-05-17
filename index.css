@@ -49,6 +49,7 @@ section > .config:hover{
     margin: auto;
     width: max-content;
     text-align: initial;
+    cursor: pointer;
 }
 #placar{ 
     font-size: 35px; 
@@ -62,7 +63,7 @@ section > .config:hover{
     font-family: 'Nunito';
 }
 #reset{
-    background-color: #8b1414;
+    background-color: #c0392b;
     color: white;
     font-family: 'Nunito';
     border: none;
