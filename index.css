@@ -5,9 +5,8 @@
 }
 /*Tags*/
 body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     height: 100vh;
     align-items: center;
     background-color: white;
@@ -29,6 +28,10 @@ section > .config:hover{
     background-color: #f1f3f4;
 }
 /*Ids*/
+#container{
+    display: grid;
+    place-items: center;
+}
 #content{
     width: 154px;
     height: 154px;
@@ -77,7 +80,7 @@ section > .config:hover{
     display: none !important;
 }
 
-button{
+#content button{
     background-color: #0D6EFD;
     color: white;
     font-family: 'Nunito';
