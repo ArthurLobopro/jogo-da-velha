@@ -8,7 +8,7 @@ function mainWindow() {
 
     const win = new BrowserWindow({
         minHeight: 380,
-        minWidth: 275,
+        minWidth: 330,
         width:370,
         height: 440,
         frame: false,
