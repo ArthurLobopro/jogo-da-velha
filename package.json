@@ -39,10 +39,12 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "jogo-da-velha",
+            "name": "Jogo.da.Velha",
             "setupIcon": "./build/icon.ico",
             "iconURL": "./build/icon.ico",
-            "setupExe": "${name}-${version}-setup.exe"
+            "setupExe": "${name}-${version}-setup.exe",
+            "setupMsi": "${name}-${version}-setup.msi",
+            "noMsi": false
           }
         },
         {
