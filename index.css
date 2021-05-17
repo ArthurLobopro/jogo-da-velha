@@ -80,7 +80,7 @@ section > .config:hover{
     display: none !important;
 }
 
-#content button{
+section button{
     background-color: #0D6EFD;
     color: white;
     font-family: 'Nunito';
