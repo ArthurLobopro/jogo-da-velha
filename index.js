@@ -3,6 +3,7 @@ import Normal from "./src/dificulties/Normal.js"
 import Hard from "./src/dificulties/Hard.js"
 import { criaPlacar, criarDificuldade, lerDificuldade, lerPlacar } from "./src/Save.js";
 import { placar, draw, drawWinSequence } from "./src/View.js"
+import confirm from "./src/browser-functions/confirm.js"
 // Variáveis Globais
 const get = id => document.getElementById(id)
 const game = {
@@ -173,8 +174,8 @@ for(let i of difficulty_config){
 const new_game_button = get("new-game-button")
 new_game_button.onclick = newgame
 const reset = get("reset")
-reset.onclick = () => {
-    if(confirm('Você realmente deseja resetar o placar?')){
+reset.onclick = async () => {
+    if(await confirm({title: "Confirme para continuar", text:"Você realmente deseja resetar o placar?"})){
         game.placar = { player:0, bot: 0}
         criaPlacar(game.placar)
         placar(game)
