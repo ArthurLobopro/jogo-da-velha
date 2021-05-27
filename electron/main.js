@@ -23,7 +23,20 @@ function mainWindow() {
     win.loadFile('index.html')
 }
 
-app.whenReady().then(mainWindow)
+const isUnicInstance = app.requestSingleInstanceLock() //Verifica se o app já foi iniciado
+
+if (!isUnicInstance) {
+    app.quit() // Caso o app já tiver sido aberto ele é fechado
+}else{
+    app.whenReady().then(createWindow)
+}
+
+app.on('second-instance', () => {
+    const win = BrowserWindow.getAllWindows()[0]
+    if(win.isMinimized()) win.restore()
+    win.center()
+    win.focus()
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
